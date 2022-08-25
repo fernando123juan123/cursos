@@ -183,9 +183,7 @@ class Controller_usuario extends CI_Controller
 			$this->load->view('plantilla',$datos);
 		}
 
-		public function prueba(){
-			echo "string";
-		}
+		
 	/// modulo adminUsuario
 
 }
