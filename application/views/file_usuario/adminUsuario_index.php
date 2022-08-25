@@ -12,7 +12,7 @@
 
 	<a href="<?php echo base_url(); ?>nuevoUsuario" class="btn btn-success btn-raised"> NUEVO USUARIO</a>
 	
-	<a href="" target="_blank" class="btn btn-warning btn-raised"> REPORTE PDF</a>
+	<a href="<?php echo base_url(); ?>listarUsuarioPdf" target="_blank" class="btn btn-warning btn-raised"> REPORTE PDF</a>
 	<a href="" target="_blank" class="btn btn-primary btn-raised"> REPORTE EXCEL</a>
 
 	<div class="table-responsive">

@@ -74,6 +74,11 @@ class Model_usuario extends CI_Model
 		INNER JOIN persona ON usuario.idpersona = persona.idpersona
 		WHERE usuario.idpersona='$idpersona' AND usuario.estado='activo' ")->row();
 	}
+	public function editarUsuario($idusuario){
+		return $this->db->query("SELECT * FROM usuario
+		INNER JOIN persona ON usuario.idpersona = persona.idpersona
+		WHERE usuario.idusuario='$idusuario'  ")->row();
+	}
 
 
 

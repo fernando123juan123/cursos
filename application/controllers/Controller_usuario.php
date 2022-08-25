@@ -9,6 +9,8 @@ class Controller_usuario extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_usuario');
 	}
+
+	
 	public function index(){
 		if ($this->session->userdata('session')) {
 			redirect(base_url().'adminInicio');
@@ -123,6 +125,8 @@ class Controller_usuario extends CI_Controller
 			$usuario=$this->input->post('usuario');
 			$password=sha1($this->input->post('password'));
 
+			// $password = crypt($this->input->post('password'),'$6$rounds=5000$usesomesillystringforsalt$');
+
 			$imagen=$_FILES['imagen']['tmp_name'];
 			if ($imagen) {
 
@@ -179,11 +183,56 @@ class Controller_usuario extends CI_Controller
 		}
 		public function editarUsuario($idusuario){
 			// echo $idusuario;
+			$datos['obj']=$this->Model_usuario->editarUsuario($idusuario);
 			$datos['contenido']='file_usuario/form_editarUsuario';
 			$this->load->view('plantilla',$datos);
 		}
+		public function guardarEditarUsuario(){
+			$idpersona=$this->input->post('idpersona');
+			$idusuario=$this->input->post('idusuario');
+			$imagen_a=$this->input->post('imagen_a');
 
-		
+			$expedido=$this->input->post('expedido');
+			$nombre=mb_strtoupper($this->input->post('nombre'),'utf-8');
+			$paterno=mb_strtoupper($this->input->post('paterno'),'utf-8');
+			$materno=mb_strtoupper($this->input->post('materno'),'utf-8');
+			$celular=$this->input->post('celular');
+
+			$idrol=$this->input->post('idrol');
+
+			$imagen=$_FILES['imagen']['tmp_name'];
+			if ($imagen) {
+
+				if ($imagen_a) {
+					unlink("./assets/imagenes/".$imagen_a);
+				}
+
+				$ext=explode('.', $_FILES['imagen']['name']);
+				$img=round(microtime(true)).'.'.end($ext);
+				move_uploaded_file($_FILES['imagen']['tmp_name'],"assets/imagenes/user_".$img);
+				$imagen="user_".$img;
+
+			}else{
+				$imagen=$imagen_a;
+			}
+
+			$objeto=array(
+				'expedido'=>$expedido,
+				'nombre'=>$nombre,
+				'paterno'=>$paterno,
+				'materno'=>$materno,
+				'celular'=>$celular
+			);
+			$this->Model_usuario->editar_tabla_sys('persona',$objeto,'idpersona',$idpersona);
+
+			$objeto1=array(
+				'imagen'=>$imagen,
+				'idrol'=>$idrol
+			);
+			$this->Model_usuario->editar_tabla_sys('usuario',$objeto1,'idusuario',$idusuario);
+		}
+
+
 	/// modulo adminUsuario
 
 }

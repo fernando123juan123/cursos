@@ -70,6 +70,7 @@ $route['guardarNuevoUsuario'] = 'Controller_usuario/guardarNuevoUsuario';
 $route['cambiar_estado_usuario'] = 'Controller_usuario/cambiar_estado_usuario';
 $route['eliminar_usuario'] = 'Controller_usuario/eliminar_usuario';
 $route['editarUsuario/(:any)'] = 'Controller_usuario/editarUsuario/$1';
+$route['guardarEditarUsuario'] = 'Controller_usuario/guardarEditarUsuario';
 //fin adminUsuario
 
 //privilegios
@@ -79,3 +80,7 @@ $route['privilegios'] = 'Controller_usuario/privilegios';
 //graficos
 $route['graficos'] = 'Controller_usuario/graficos';
 //fin graficos
+
+// modulo reportes pdf
+$route['listarUsuarioPdf'] = 'Controller_reportes_pdf/listarUsuarioPdf';
+// modulo reportes pdf
