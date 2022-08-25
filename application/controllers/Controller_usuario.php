@@ -182,6 +182,10 @@ class Controller_usuario extends CI_Controller
 			$datos['contenido']='file_usuario/form_editarUsuario';
 			$this->load->view('plantilla',$datos);
 		}
+
+		public function prueba(){
+			echo "string";
+		}
 	/// modulo adminUsuario
 
 }
