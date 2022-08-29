@@ -53,10 +53,10 @@
 							<a href="<?php echo base_url(); ?>adminUsuario"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Admin Usuario</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url(); ?>privilegios"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Privilegios</a>
+							<a href="<?php echo base_url(); ?>graficos"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Graficos</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url(); ?>graficos"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Graficos</a>
+							<a href="<?php echo base_url(); ?>privilegios"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Privilegios</a>
 						</li>
 					</ul>
 				</li>

@@ -81,7 +81,10 @@ class Model_usuario extends CI_Model
 	}
 
 
-
+	public function reporteGrafico($estado){
+		return $this->db->query("SELECT count(idusuario) as total FROM usuario 
+		WHERE usuario.estado='$estado'  ")->row();
+	}
 
 }
 

@@ -79,8 +79,13 @@ $route['privilegios'] = 'Controller_usuario/privilegios';
 
 //graficos
 $route['graficos'] = 'Controller_usuario/graficos';
+$route['reporteGrafico'] = 'Controller_usuario/reporteGrafico';
 //fin graficos
 
 // modulo reportes pdf
 $route['listarUsuarioPdf'] = 'Controller_reportes_pdf/listarUsuarioPdf';
 // modulo reportes pdf
+
+// modulo reportes excel
+$route['listarUsuarioExcel'] = 'Controller_reportes_pdf/listarUsuarioExcel';
+// modulo reportes excel

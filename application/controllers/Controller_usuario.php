@@ -235,5 +235,26 @@ class Controller_usuario extends CI_Controller
 
 	/// modulo adminUsuario
 
+
+
+	/// modulo graficos
+		public function graficos(){
+			$datos['contenido']="graficos/graficos_index";
+			$this->load->view('plantilla',$datos);
+		}
+		public function reporteGrafico(){
+			$obj1=$this->Model_usuario->reporteGrafico('activo');
+			$obj2=$this->Model_usuario->reporteGrafico('inactivo');
+			$obj3=$this->Model_usuario->reporteGrafico('eliminar');
+			
+			$datos=array(
+				0=>$obj1->total,
+				1=>$obj2->total,
+				2=>$obj3->total
+			);
+			echo json_encode($datos);
+		}
+	/// modulo graficos
+
 }
  ?>

@@ -49,6 +49,56 @@ class Controller_reportes_pdf extends CI_Controller
 		$pdf->output('imprimir_lista_usuario.pdf','I');
 		ob_end_clean();
 	}
+	public function listarUsuarioExcel(){
+		require_once APPPATH."/libraries/PHPExcel/Classes/PHPExcel.php";
+		$excel=new PHPExcel();
+
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+		$excel->getActiveSheet()->setCellValue('A1','LISTAR USUARIOS');
+
+
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+		$excel->getActiveSheet()->setCellValue('A2','#');
+
+		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('B2','CARNET');
+
+		$excel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('C2','NOMBRE');
+
+		$excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('D2','APELLIDOS');
+
+		$excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('E2','CELULAR');
+
+		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('F2','ESTADO');
+
+		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+		$excel->getActiveSheet()->setCellValue('G2','ROL');
+
+		$con=1; 
+		$c=3; 
+		foreach ($this->Model_usuario->listar_usuarios() as $objecto) {
+			$excel->getActiveSheet()->setCellValue('A'.$c,$con++);
+			$excel->getActiveSheet()->setCellValue('B'.$c,$objecto->ci);
+			$excel->getActiveSheet()->setCellValue('C'.$c,$objecto->nombre);
+			$excel->getActiveSheet()->setCellValue('D'.$c,$objecto->paterno.' '.$objecto->materno);
+			$excel->getActiveSheet()->setCellValue('E'.$c,$objecto->celular);
+			$excel->getActiveSheet()->setCellValue('F'.$c,$objecto->estado);
+			$excel->getActiveSheet()->setCellValue('G'.$c,$objecto->roles);
+			$c=$c+1;
+		}
+
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename=listarUsuarioExcel.xls');
+		header('Cache-Control: max-age=0');
+
+		$objExcel=PHPExcel_IOFactory::createWriter($excel,'Excel5');
+		$objExcel->save('php://output');
+	}
 
 }
 
