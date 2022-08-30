@@ -38,7 +38,8 @@ class Model_usuario extends CI_Model
 		persona.nombre,
 		persona.paterno,
 		persona.materno,
-		rol.roles
+		rol.roles,
+		rol.idrol
 		from usuario
 		INNER JOIN persona USING(idpersona)
 		INNER JOIN rol USING(idrol)

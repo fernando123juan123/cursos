@@ -44,22 +44,31 @@
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
 					</a>
 				</li>
+				<?php if( (!empty($menus['adminUsuario'])) || (!empty($menus['graficos'])) || (!empty($menus['privilegios']))  ){ ?>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Adminitracion <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
+						<?php if(!empty($menus['adminUsuario']))  if($menus['adminUsuario']=='adminUsuario'){ ?>
 						<li>
 							<a href="<?php echo base_url(); ?>adminUsuario"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Admin Usuario</a>
 						</li>
+						<?php } ?>
+						<?php if(!empty($menus['graficos'])) if($menus['graficos']=='graficos'){ ?>
 						<li>
 							<a href="<?php echo base_url(); ?>graficos"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Graficos</a>
 						</li>
+						<?php } ?>
+						<?php if(!empty($menus['privilegios'])) if($menus['privilegios']=='privilegios'){ ?>
 						<li>
 							<a href="<?php echo base_url(); ?>privilegios"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Privilegios</a>
 						</li>
+						<?php } ?>
 					</ul>
 				</li>
+				<?php } ?>
+
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Users <i class="zmdi zmdi-caret-down pull-right"></i>

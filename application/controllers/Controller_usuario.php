@@ -8,6 +8,7 @@ class Controller_usuario extends CI_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Model_usuario');
+		$this->menu=$this->backend_lib->listar_menus_sys();
 	}
 
 	
@@ -29,6 +30,7 @@ class Controller_usuario extends CI_Controller
 			$datos=array(
 				'session'	=>	true,
 				'id'  		=>	$obj->idusuario,
+				'idrol'  	=>	$obj->idrol,
 				'nombres'	=>	$obj->nombre.' '.$obj->paterno.' '.$obj->materno,
 				'roles'		=>	$obj->roles
 			);
@@ -50,6 +52,7 @@ class Controller_usuario extends CI_Controller
 		/*echo " holaaaa... <br>";
 		echo $this->session->userdata('nombres')." <br>";
 		echo $this->session->userdata('roles');*/
+		$datos['menus']=$this->menu;
 		$datos['contenido']="inicio/contenido_index";
 		$this->load->view('plantilla',$datos);
 	}
@@ -61,8 +64,14 @@ class Controller_usuario extends CI_Controller
 
 	/// modulo adminUsuario
 		public function adminUsuario(){
-			$datos['contenido']="file_usuario/adminUsuario_index";
-			$this->load->view('plantilla',$datos);
+			// print_r($this->menu);die();
+			if ($this->menu['adminUsuario']=='adminUsuario') {
+				$datos['menus']=$this->menu;
+				$datos['contenido']="file_usuario/adminUsuario_index";
+				$this->load->view('plantilla',$datos);
+			}else{
+				redirect(base_url().'adminInicio');
+			}
 		}
 		public function nuevoUsuario(){
 			$datos['contenido']="file_usuario/form_nuevoUsuario";
@@ -239,8 +248,14 @@ class Controller_usuario extends CI_Controller
 
 	/// modulo graficos
 		public function graficos(){
-			$datos['contenido']="graficos/graficos_index";
-			$this->load->view('plantilla',$datos);
+			if ($this->menu['graficos']=='graficos') {
+				$datos['menus']=$this->menu;
+				$datos['contenido']="graficos/graficos_index";
+				$this->load->view('plantilla',$datos);
+			}else{
+				redirect(base_url().'adminInicio');
+			}
+			
 		}
 		public function reporteGrafico(){
 			$obj1=$this->Model_usuario->reporteGrafico('activo');
@@ -256,5 +271,15 @@ class Controller_usuario extends CI_Controller
 		}
 	/// modulo graficos
 
+
+	public function privilegios(){
+		if ($this->menu['privilegios']=='privilegios') {
+			$datos['menus']=$this->menu;
+			echo "string";
+		}else{
+			redirect(base_url().'adminInicio');
+		}
+		
+	}
 }
  ?>
